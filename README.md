@@ -15,9 +15,9 @@ python ifaceinfo.py
 
 ## how to use the class
 ```
+under work
 ```
 
 ## output example
-```
+[Output example](output.md)
 
-```
