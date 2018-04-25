@@ -1,4 +1,4 @@
-```json
+```javascript
 [
 {'addr_assign_type': '3',
   'addr_len': '6',
