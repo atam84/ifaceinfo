@@ -1,4 +1,6 @@
-[{'addr_assign_type': '3',
+```json
+[
+{'addr_assign_type': '3',
   'addr_len': '6',
   'address': '02:42:1f:44:0e:50',
   'brforward': '',
@@ -855,4 +857,6 @@
   'subsystem': {},
   'tx_queue_len': '0',
   'type': '1',
-  'uevent': 'DEVTYPE=bridge\nINTERFACE=docker_gwbridge\nIFINDEX=4'}]
+  'uevent': 'DEVTYPE=bridge\nINTERFACE=docker_gwbridge\nIFINDEX=4'}
+  ]
+```
