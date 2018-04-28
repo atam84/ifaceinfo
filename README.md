@@ -1,5 +1,7 @@
 # ifaceinfo
-python script that return networks informations in json format
+python script that return networks informations in json format.
+version: 0.0.5
+Compatibility: Python 2 and Python 3
 
 ## compatibility
 This script is compatible with Linux OS
@@ -14,9 +16,13 @@ python ifaceinfo.py
 ```
 
 ## how to use the class
+```python
+from ifaceinfo import networkInterfaceInfo
+
+ifaces = networkInterfaceInfo()
 ```
-under work
-```
+[View the full documentation](networkInterfaceInfo.md)
+
 
 ## output example
 [Output example](output.md)
