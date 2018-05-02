@@ -1,1 +1,2 @@
-from ifaceinfo import networkInterfaceInfo
+#from ifaceinfo import IfacesInfo
+from ifaceinfo import InterfacesInfos

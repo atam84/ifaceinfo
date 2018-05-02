@@ -29,8 +29,7 @@ def iface_test():
     pprint(networkiface.ifaces_info())
     print('list interface up with brief informations:')
     pprint(networkiface.ifaces_by_status('up', 'brief'))
-    print('list all interfaces type :')
-    pprint(networkiface.ifaces_type())
+    
     print('list enp5s0 interface statistics :')
     pprint(networkiface.iface_statistics('enp5s0'))
     print('list routing table for all interfaces :')
@@ -41,6 +40,8 @@ def iface_test():
     pprint(networkiface.list_interfaces())
     pprint(networkiface.iface_as_dict('usb0'))
     pprint(networkiface.ifaces_statistics_as_dict())
+    print('list all interfaces type :')
+    pprint(networkiface.ifaces_type())
     #print('list interfaces from dict :')
     #pprint(networkiface.iface_as_dict.iface_list())
     #print('** usb0 :')
