@@ -1,7 +1,18 @@
 # ifaceinfo
 python script that return networks informations in json format.
-version: 0.0.5
-Compatibility: Python 2 and Python 3
+the informations collected:
+- network name
+- mac, ip, mask, network address
+- status
+- statistics
+- ifindex, iflink
+- routing table
+
+#### comming soon:
+- tcp/tcp6 established connexion
+- udp/udp6 established connexion
+
+## Version: 0.0.8, compatibility: Python 2 and Python 3
 
 ## compatibility
 This script is compatible with Linux OS
@@ -17,9 +28,9 @@ python ifaceinfo.py
 
 ## how to use the class
 ```python
-from ifaceinfo import networkInterfaceInfo
+from ifaceinfo import InterfacesInfos
 
-ifaces = networkInterfaceInfo()
+ifaces = InterfacesInfos()
 ```
 [View the full documentation](networkInterfaceInfo.md)
 
