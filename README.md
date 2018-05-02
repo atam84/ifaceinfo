@@ -12,7 +12,7 @@ the informations collected:
 - tcp/tcp6 established connexion
 - udp/udp6 established connexion
 
-## Version: 0.0.8, compatibility: Python 2 and Python 3
+## Version: 0.1.2, python compatibility: Python 2 and Python 3
 
 ## compatibility
 This script is compatible with Linux OS
