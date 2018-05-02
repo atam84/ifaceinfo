@@ -22,7 +22,7 @@ class InterfacesInfos:
         maybe in the future somme other data will be loaded directly to improve performance and data usability
         at this time the scan of /sys/class/net are performed in the initialisation of the class
         '''
-        self.version = '0.0.7'
+        self.version = '0.1.2'
         self.github_url = 'https://github.com/atam84/ifaceinfo'
         self.__timestamp = self.timestamp = int(time.time())
         self.__ifaces_info = self.__get_ifaces_info('/sys/class/net')
@@ -102,10 +102,16 @@ class InterfacesInfos:
                             else:
                                 fd = open(os.path.join(netIfaceDir, param), 'r')
                             paramValue = fd.read()
+                            try:
+                                fd.close()
+                            except Exception:
+                                pass
                         except IOError:
                             paramValue = ''
-                        fd.close()
-                        netIface[param] = paramValue.rstrip()
+                        if param == 'uevent':
+                            netIface[param] = self.__uevent_as_list(paramValue.rstrip())
+                        else:
+                            netIface[param] = self.__convert_value(paramValue.rstrip())
                     if os.path.isdir(os.path.join(netIfaceDir, param)):
                         netIface[param] = self.__scan_object(os.path.join(netIfaceDir, param), param)
                 objArray.append(netIface)
@@ -131,19 +137,36 @@ class InterfacesInfos:
                     else:
                         __fd = open(os.path.join(path, sub_object), 'r')
                     paramValue = __fd.readlines()
+                    __fd.close()
                 except IOError:
                     paramValue = ''
-                __fd.close()
                 if len(paramValue) == 1:
-                    scan_obj[sub_object] = paramValue[0].rstrip()
+                    scan_obj[sub_object] = self.__convert_value(paramValue[0].rstrip())
                 else:
-                    scan_obj[sub_object] = []
-                    for val in paramValue:
-                        scan_obj[sub_object].append(val.rstrip())
+                    if sub_object == 'uevent':
+                        scan_obj[sub_object] = self.__uevent_as_list('\n'.join(paramValue))
+                    else:
+                        scan_obj[sub_object] = []
+                        for val in paramValue:
+                            scan_obj[sub_object].append(self.__convert_value(val.rstrip()))
             #if os.path.isdir(os.path.join(path, sub_object)):
                 #scan_obj[sub_object] = __scan_object(os.path.join(path, sub_object), sub_object)
                 #print 'Dir: ' + path + '/' + sub_object, sub_object
         return scan_obj
+
+    def __convert_value(self, valuetoconvert):
+        '''
+        private methode that convert from string to int or float or keep string if tye is not detected
+        '''
+        _value = ''
+        try:
+            _value = int(valuetoconvert)
+        except ValueError:
+            try:
+                _value = float(valuetoconvert)
+            except ValueError:
+                _value = valuetoconvert
+        return _value
 
     def __ip_address(self, ifaceName):
         '''
@@ -486,9 +509,22 @@ class InterfacesInfos:
     #    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     #    return socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack('256s', ifname[:15]))[20:24])
 
+    def __uevent_as_list(self, uevententry):
+        __iface = {}
+        __devtype = False
+        for iface_type in uevententry.split('\n'):
+            _iface_type = iface_type.split('=')
+            if len(_iface_type) == 2:
+                __iface[_iface_type[0].lower()] = _iface_type[1]
+                if _iface_type[0].lower() == 'devtype':
+                     __devtype = True
+        if __devtype == False:
+            __iface['devtype'] = 'unknown'
+        return __iface
+
     def ifaces_type(self):
         '''
-        return a list of all interfaces with interface_type
+        return a list of all interfaces with uevent that give device type
         '''
         #'uevent': 'DEVTYPE=wlan\nINTERFACE=wlp2s0\nIFINDEX=3'
         _ifacetype = []
@@ -500,17 +536,8 @@ class InterfacesInfos:
                 'network_address': iface['network_address'],
                 'operstate': iface['operstate'],
                 'timestamp': self.__get_timestamp(),
-                'interface_type': {}
+                'uevent': iface['uevent']
             }
-            _devtype = False
-            for iface_type in iface['uevent'].split('\n'):
-                _iface_type = iface_type.split('=')
-                if len(_iface_type) == 2:
-                    _iface['interface_type'][_iface_type[0].lower()] = _iface_type[1]
-                    if _iface_type[0].lower() == 'devtype':
-                        _devtype = True
-            if _devtype == False:
-                _iface['interface_type']['devtype'] = 'unknown'
             _ifacetype.append(_iface)
         return _ifacetype
 
