@@ -21,10 +21,11 @@ This script is compatible with Linux OS
 ## how this script work
 The script read the '/sys/class/net/' recursively (partialy) and store the collected information in Dict and return the result that can be exploited like json file. 
 
-## how to use it
+## how to install
 ```
-python ifaceinfo.py
+pip install ifaceinfo
 ```
+or clone the github repository and work directly with
 
 ## how to use the class
 ```python
