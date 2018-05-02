@@ -1,5 +1,5 @@
 # ifaceinfo
-python script that return networks informations in json format.
+python class that return networks informations in json format.
 the informations collected:
 - network name
 - mac, ip, mask, network address
