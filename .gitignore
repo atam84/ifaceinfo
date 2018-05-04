@@ -1,0 +1,18 @@
+# Compiled python modules.
+*.pyc
+./ifaceinfo/*.pyc
+*.c
+./ifaceinfo/*.c
+./ifaceinfo/.vscode/
+./ifaceinfo/testing_lab/
+
+# Setuptools distribution folder.
+/dist/
+.idea/
+
+# Python egg metadata, regenerated from source files by setuptools.
+/*.egg-info
+
+./ifaceinfo/*.code-workspace
+./ifaceinfo/__pycache__
+/__pycache__
