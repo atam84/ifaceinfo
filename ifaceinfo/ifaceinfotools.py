@@ -151,22 +151,29 @@ class Conn(IfaceInfoTools, FileReader):
         private function that parse the /proc/net/{tcp, udp} and give human readable ip, ports and status ...
         '''
         _connexion = []
+        _jump = 4
         for _tcpconn in self.read_file_as_table(filename):
             _element = _tcpconn.split()
             _localaddr = _element[1].split(':')
             _remotraddr = _element[2].split(':')
+            if protocle == 'tcp' or protocle == 'udp':
+                _ip_local = self.reverse_ip(self.hex2ip(_localaddr[0]))
+                _ip_remote = self.reverse_ip(self.hex2ip(_remotraddr[0]))
+            elif protocle == 'tcp6' or protocle == 'udp6':
+                _ip_local = ':'.join([_localaddr[0][i:i+_jump] for i in range(0, len(_localaddr[0]), _jump)])
+                _ip_remote = ':'.join([_remotraddr[0][i:i+_jump] for i in range(0, len(_remotraddr[0]), _jump)])
             _connexion.append({
                 'sl': _element[0].replace(':', ''),
                 'local_address': {
                     'x_addr': _localaddr[0],
                     'x_port': _localaddr[1],
-                    'ip': self.reverse_ip(self.hex2ip(_localaddr[0])),
+                    'ip': _ip_local,
                     'port': int(_localaddr[1], 16)
                 },
                 'rem_address': {
                     'x_addr': _remotraddr[0],
                     'x_port': _remotraddr[1],
-                    'ip': self.reverse_ip(self.hex2ip(_remotraddr[0])),
+                    'ip': _ip_remote,
                     'port': int(_remotraddr[1], 16)
                 },
                 'st': _element[3],

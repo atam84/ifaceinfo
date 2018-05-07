@@ -1,0 +1,127 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module ifaceinfo</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ifaceinfo</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/atam84/projects/python/ifaceinfo/ifaceinfo.py">/home/atam84/projects/python/ifaceinfo/ifaceinfo.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="fcntl.html">fcntl</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="socket.html">socket</a><br>
+<a href="struct.html">struct</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="ifaceinfo.html#InterfacesInfos">InterfacesInfos</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="InterfacesInfos">class <strong>InterfacesInfos</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="InterfacesInfos-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>data&nbsp;initialisation<br>
+maybe&nbsp;in&nbsp;the&nbsp;future&nbsp;somme&nbsp;other&nbsp;data&nbsp;will&nbsp;be&nbsp;loaded&nbsp;directly&nbsp;to&nbsp;improve&nbsp;performance&nbsp;and&nbsp;data&nbsp;usability<br>
+at&nbsp;this&nbsp;time&nbsp;the&nbsp;scan&nbsp;of&nbsp;/sys/class/net&nbsp;are&nbsp;performed&nbsp;in&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;class</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-as_dict"><strong>as_dict</strong></a>(self)</dt><dd><tt>return&nbsp;interfaces&nbsp;informations&nbsp;as&nbsp;dict&nbsp;result</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-get_timestamp"><strong>get_timestamp</strong></a>(self)</dt><dd><tt>get&nbsp;timestamp&nbsp;of&nbsp;data&nbsp;collection</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_as_dict"><strong>iface_as_dict</strong></a>(self, ifacename)</dt><dd><tt>return&nbsp;interfaces&nbsp;informations&nbsp;as&nbsp;dict&nbsp;result</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_by_ifindex"><strong>iface_by_ifindex</strong></a>(self, ifindex, info<font color="#909090">='full'</font>)</dt><dd><tt>get&nbsp;interface&nbsp;that&nbsp;have&nbsp;ifindex=X<br>
+ifindex&nbsp;is&nbsp;located&nbsp;in&nbsp;/sys/class/net/&lt;iface&gt;/ifindex<br>
+return&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_by_iflink"><strong>iface_by_iflink</strong></a>(self, iflink, info<font color="#909090">='full'</font>)</dt><dd><tt>get&nbsp;interface&nbsp;that&nbsp;have&nbsp;iflink=X<br>
+ifindex&nbsp;is&nbsp;located&nbsp;in&nbsp;/sys/class/net/&lt;iface&gt;/iflink<br>
+return&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_by_uid"><strong>iface_by_uid</strong></a>(self, identifier, value, info<font color="#909090">='full'</font>)</dt><dd><tt>get&nbsp;interfaces&nbsp;by&nbsp;defined&nbsp;identifier&nbsp;and&nbsp;value,&nbsp;the&nbsp;third&nbsp;parametre&nbsp;info&nbsp;allow&nbsp;<br>
+the&nbsp;choise&nbsp;to&nbsp;return&nbsp;the&nbsp;result&nbsp;as&nbsp;a&nbsp;full&nbsp;data&nbsp;or&nbsp;briefly<br>
+&nbsp;<br>
+the&nbsp;identifier&nbsp;can&nbsp;be&nbsp;any&nbsp;key&nbsp;value&nbsp;of&nbsp;the&nbsp;class&nbsp;definition<br>
+this&nbsp;funtion&nbsp;is&nbsp;used&nbsp;by&nbsp;self.getifaceByIndex()&nbsp;and&nbsp;self.getifaceByLink()<br>
+&nbsp;<br>
+return&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_info"><strong>iface_info</strong></a>(self, ifaceName)</dt><dd><tt>get&nbsp;specific&nbsp;interface&nbsp;name&nbsp;with&nbsp;full&nbsp;information<br>
+return&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_network_config"><strong>iface_network_config</strong></a>(self, ifacename)</dt><dd><tt>get&nbsp;specific&nbsp;interface&nbsp;network&nbsp;configuration&nbsp;only,&nbsp;return&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_routes"><strong>iface_routes</strong></a>(self, ifacename)</dt><dd><tt>return&nbsp;the&nbsp;routing&nbsp;table&nbsp;of&nbsp;specific&nbsp;interface.</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_statistics"><strong>iface_statistics</strong></a>(self, ifacename)</dt><dd><tt>return&nbsp;a&nbsp;dict&nbsp;of&nbsp;specific&nbsp;interface&nbsp;with&nbsp;statistics</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-iface_type"><strong>iface_type</strong></a>(self, ifacename)</dt><dd><tt>return&nbsp;a&nbsp;dict&nbsp;of&nbsp;specific&nbsp;interface&nbsp;with&nbsp;interface_type&nbsp;if&nbsp;the&nbsp;interface&nbsp;is&nbsp;not&nbsp;found&nbsp;return&nbsp;empty&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_as_dict"><strong>ifaces_as_dict</strong></a>(self)</dt><dd><tt>return&nbsp;interfaces&nbsp;informations&nbsp;as&nbsp;dict&nbsp;result&nbsp;give&nbsp;the&nbsp;same&nbsp;result&nbsp;as&nbsp;self.<a href="#InterfacesInfos-as_dict">as_dict</a>()</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_by_status"><strong>ifaces_by_status</strong></a>(self, status, info<font color="#909090">='full'</font>)</dt><dd><tt>get&nbsp;interface&nbsp;by&nbsp;status,&nbsp;this&nbsp;function&nbsp;is&nbsp;used&nbsp;by&nbsp;self.getifacesUp()&nbsp;and&nbsp;self.getifacesDown()<br>
+return&nbsp;an&nbsp;array&nbsp;with&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_count"><strong>ifaces_count</strong></a>(self)</dt><dd><tt>return&nbsp;a&nbsp;number&nbsp;of&nbsp;detected&nbsp;interfaces</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_down"><strong>ifaces_down</strong></a>(self, info<font color="#909090">='full'</font>)</dt><dd><tt>get&nbsp;interface&nbsp;down&nbsp;and&nbsp;other&nbsp;status<br>
+return&nbsp;an&nbsp;array&nbsp;with&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_ifindex"><strong>ifaces_ifindex</strong></a>(self)</dt><dd><tt>get&nbsp;all&nbsp;interfaces&nbsp;name&nbsp;and&nbsp;ifindex<br>
+return&nbsp;array&nbsp;of&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_ifindex_iflink"><strong>ifaces_ifindex_iflink</strong></a>(self)</dt><dd><tt>get&nbsp;all&nbsp;interfaces&nbsp;with&nbsp;brief&nbsp;informations&nbsp;(name,&nbsp;ifindex,&nbsp;iflink,&nbsp;ip&nbsp;and&nbsp;mask)<br>
+return&nbsp;an&nbsp;array&nbsp;of&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_iflink"><strong>ifaces_iflink</strong></a>(self)</dt><dd><tt>get&nbsp;all&nbsp;interfaces&nbsp;name&nbsp;and&nbsp;iflink<br>
+return&nbsp;array&nbsp;of&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_info"><strong>ifaces_info</strong></a>(self)</dt><dd><tt>get&nbsp;all&nbsp;interfaces&nbsp;informations&nbsp;(full&nbsp;collected&nbsp;information)</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_list"><strong>ifaces_list</strong></a>(self)</dt><dd><tt>get&nbsp;a&nbsp;list&nbsp;of&nbsp;interface&nbsp;name<br>
+return&nbsp;array&nbsp;of&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_network_config"><strong>ifaces_network_config</strong></a>(self)</dt><dd><tt>get&nbsp;the&nbsp;interfaces&nbsp;network&nbsp;configuration&nbsp;only</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_routes"><strong>ifaces_routes</strong></a>(self)</dt><dd><tt>return&nbsp;the&nbsp;routing&nbsp;table&nbsp;as&nbsp;array.</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_statistics"><strong>ifaces_statistics</strong></a>(self)</dt><dd><tt>return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;interfaces&nbsp;with&nbsp;statistics</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_statistics_as_dict"><strong>ifaces_statistics_as_dict</strong></a>(self)</dt><dd><tt>return&nbsp;ifaces&nbsp;statistics&nbsp;as&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_type"><strong>ifaces_type</strong></a>(self)</dt><dd><tt>return&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;interfaces&nbsp;with&nbsp;uevent&nbsp;that&nbsp;give&nbsp;device&nbsp;type</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-ifaces_up"><strong>ifaces_up</strong></a>(self, info<font color="#909090">='full'</font>)</dt><dd><tt>get&nbsp;interface&nbsp;up&nbsp;only<br>
+return&nbsp;an&nbsp;array&nbsp;with&nbsp;dict</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-list_interfaces"><strong>list_interfaces</strong></a>(self)</dt><dd><tt>list&nbsp;interfaces&nbsp;name&nbsp;from&nbsp;dict,&nbsp;this&nbsp;is&nbsp;like&nbsp;self.<a href="#InterfacesInfos-ifaces_list">ifaces_list</a>()</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-refresh"><strong>refresh</strong></a>(self)</dt><dd><tt>this&nbsp;function&nbsp;refresh&nbsp;the&nbsp;informations&nbsp;collected&nbsp;when&nbsp;the&nbsp;class&nbsp;is&nbsp;loaded<br>
+if&nbsp;you&nbsp;want&nbsp;to&nbsp;work&nbsp;with&nbsp;fresh&nbsp;data&nbsp;use&nbsp;the&nbsp;function&nbsp;to&nbsp;reload&nbsp;the&nbsp;data&nbsp;updated</tt></dd></dl>
+
+<dl><dt><a name="InterfacesInfos-reload"><strong>reload</strong></a>(self)</dt><dd><tt>same&nbsp;as&nbsp;self.<a href="#InterfacesInfos-refresh">refresh</a>()</tt></dd></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

@@ -2,37 +2,37 @@
 
 import sys
 sys.path.append('../')
-from tcpconn import TCPConn
+from udpconn import UDP6Conn
 from pprint import pprint
 
-tcp = TCPConn()
+udp6 = UDP6Conn()
 
-def tcpconn_test():
-    print('#### List all tcp connexion :')
+def udp6conn_test():
+    print('#### List all udp6 connexion :')
     print('```py')
-    pprint(tcp.connexion())
+    pprint(udp6.connexion())
     print('```')
     print('#### List connexion with listening state (0x0A) :')
     print('```py')
-    pprint(tcp.get_listen_conn())
+    pprint(udp6.get_listen_conn())
     print('```')
     print('#### Remote address (incoming) : ')
     print('```py')
-    pprint(tcp.remote_addrs())
+    pprint(udp6.remote_addrs())
     print('```')
     print('#### Remote remote ports (outgoing) : ')
     print('```py')
-    pprint(tcp.remote_ports())
+    pprint(udp6.remote_ports())
     print('```')
     print('#### Local address (outgoing conn) :')
     print('```py')
-    pprint(tcp.local_addrs())
+    pprint(udp6.local_addrs())
     print('```')
     print('#### Local ports (incoming) :')
     print('```py')
-    pprint(tcp.local_ports())
+    pprint(udp6.local_ports())
     print('```')
 
 
 if __name__ == '__main__':
-    tcpconn_test()
+    udp6conn_test()

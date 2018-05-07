@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-from ifaceinfo import UDPConn
+import sys
+sys.path.append('../')
+from udpconn import UDPConn
 from pprint import pprint
 
 udp = UDPConn()
