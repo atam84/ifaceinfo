@@ -11,11 +11,12 @@ python package that provide networks informations in json/dict format
 - tcp connexions
 - udp connexions
 - ...
+
 #### Take a look to the samples informations collected
-- [interfaces](outputs_examples/test_ifacesinfos.md)
-- [routing table](outputs_examples/test_routes.md)
-- [tcp connexion](outputs_examples/test_tcp.md)
-- [udp connexion](outputs_examples/test_udp.md)
+- [interfaces](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/outputs_examples/test_ifacesinfos.md)
+- [routing table](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/outputs_examples/test_routes.md)
+- [tcp connexion](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/outputs_examples/test_tcp.md)
+- [udp connexion](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/outputs_examples/test_udp.md)
 
 #### comming soon:
 - tcp6 established connexion
