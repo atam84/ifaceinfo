@@ -101,7 +101,13 @@ def get_network_interfaces():
         print('        {:20s} {:10s} {:14s}  {:10s}'.format('multicast       :', _multicast, 'collisions      :', _collisions))
         print('        {:20s} {}/{}'.format('bytes (tx/rx)   :', str(ifaces[interface]['statistics']['tx_bytes']), str(ifaces[interface]['statistics']['rx_bytes'])))
         print('        {:20s} {}/{}'.format('packets (tx/rx) :', str(ifaces[interface]['statistics']['tx_packets']), str(ifaces[interface]['statistics']['rx_packets'])))
-        print('        {:20s} {}/{}\n'.format('errors (tx/rx)  :', _tx_errors, _rx_errors))
+        print('        {:20s} {}/{}'.format('errors (tx/rx)  :', _tx_errors, _rx_errors))
+        if ifaces[interface]['uevent']['devtype'] == 'bridge':
+            print('    {}'.format(cl.style.DIM + cl.style.UNDERLINE + 'bridge connected interfaces:' + cl.style.RESET_ALL))
+            for key in ifaces[interface]:
+                if key.startswith('lower_'):
+                    print('        {:20s} {:20s} {:s}'.format(ifaces[interface][key]['uevent']['interface'], ifaces[interface][key]['address'], ifaces[interface][key]['operstate']))
+        print('\n')
     print('---------------')
     print('{}{} network interfaces that include {} bridge listed where {} up, {} down and {} with unknown status.{}'.format(cl.fg.WHITE, _report['n_iface'], _report['br_count'], _report['iface_oper_up'], _report['iface_oper_down'], _report['iface_oper_unknown'], cl.fg.RESET))
     print('---------------')
