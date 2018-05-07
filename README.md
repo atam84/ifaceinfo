@@ -1,16 +1,71 @@
 # ifaceinfo
 python package that provide networks informations in json/dict format
 
+##### Informations are collected:
+- network device name
+- mac addr, ip addr, mask, network addr
+- status
+- statistics
+- ifindex, iflink
+- routing table
+- tcp connexions
+- udp connexions
+- ...
+#### Take a look to the samples informations collected
+- [interfaces](outputs_examples/test_ifacesinfos.md)
+- [routing table](outputs_examples/test_routes.md)
+- [tcp connexion](outputs_examples/test_tcp.md)
+- [udp connexion](outputs_examples/test_udp.md)
+
+#### comming soon:
+- tcp6 established connexion
+- udp6 established connexion
+
+## Version: 0.1.7, python compatibility: Python 2 and Python 3
+
+## compatibility
+This script is compatible with Linux OS
 
 
-# ifaceinfo package documentations
+## how this script work
+The script read the '/sys/class/net/' recursively (partialy) and store the collected information in Dict and return the result that can be exploited like json file. 
+
+## how to install
+```
+pip install ifaceinfo
+```
+or clone the github repository and work directly with
+
+## how to use the class
+```python
+from ifaceinfo import InterfacesInfos
+from ifaceroutes import InterfacesRoutes
+from ifaceroutes import TCPConn
+from ifaceroutes import UDPConn
+
+ifaces = InterfacesInfos()
+ifacesroutes = InterfacesRoutes()
+tcpconn = TCPConn()
+udpconn = UDPConn()
+```
+
+### class documentations
+- [InterfacesInfos](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/ifaceinfo.md#class-interfacesinfos)
+- [InterfacesRoutes](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/ifaceroutes.md#class-interfacesroutes)
+- [TCPConn](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/udpconn.md#class-tcpconn)
+- [UDPConn](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/udpconn.md#class-udpconn)
 
 
 
-- ##### [InterfacesInfos that provide network interfaces informations](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/ifaceinfo.md#class-interfacesinfos)
-- ##### [ifaceroutes provide routing table informations](ifaceroutes.md)
-- ##### [TCPConn provide informations about the host tcp connexion](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/tcpconn.md#class-tcpconn)
-- ##### [UDPConn provide informations about the host udp connexion](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/udpconn.md#class-udpconn)
-- ##### [IfaceInfoTools provide some method used in other class](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/ifaceinfo.md#class-ifaceinfotools)
-- ##### [Conn base class for TCPConn and UDPConn](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/ifaceinfotools.md#class-conn)
-
+## for more informations about the keyword signification read this:
+https://www.kernel.org/doc/Documentation/ABI/testing/
+- [sysfs-class-net](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net)
+- [sysfs-class-net-batman-adv](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-batman-adv)
+- [sysfs-class-net-cdc_ncm](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-cdc_ncm)
+- [sysfs-class-net-grcan](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-grcan)
+- [sysfs-class-net-janz-ican3](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-janz-ican3)
+- [sysfs-class-net-mesh](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-mesh)
+- [sysfs-class-net-phydev](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-phydev)
+- [sysfs-class-net-qmi](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-qmi)
+- [sysfs-class-net-queues](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-queues)
+- [sysfs-class-net-statistics](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-net-statistics)
