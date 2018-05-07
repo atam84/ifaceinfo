@@ -1,18 +1,27 @@
 # ifaceinfo
-python class that return networks informations in json format.
-the informations collected:
-- network name
-- mac, ip, mask, network address
+python package that provide networks informations in json/dict format
+
+##### Informations are collected:
+- network device name
+- mac addr, ip addr, mask, network addr
 - status
 - statistics
 - ifindex, iflink
 - routing table
+- tcp connexions
+- udp connexions
+- ...
+#### Take a look to the samples informations collected
+- [interfaces](outputs_examples/test_ifacesinfos.md)
+- [routing table](outputs_examples/test_routes.md)
+- [tcp connexion](outputs_examples/test_tcp.md)
+- [udp connexion](outputs_examples/test_udp.md)
 
 #### comming soon:
-- tcp/tcp6 established connexion
-- udp/udp6 established connexion
+- tcp6 established connexion
+- udp6 established connexion
 
-## Version: 0.1.2, python compatibility: Python 2 and Python 3
+## Version: 0.1.7, python compatibility: Python 2 and Python 3
 
 ## compatibility
 This script is compatible with Linux OS
@@ -30,14 +39,22 @@ or clone the github repository and work directly with
 ## how to use the class
 ```python
 from ifaceinfo import InterfacesInfos
+from ifaceroutes import InterfacesRoutes
+from ifaceroutes import TCPConn
+from ifaceroutes import UDPConn
 
 ifaces = InterfacesInfos()
+ifacesroutes = InterfacesRoutes()
+tcpconn = TCPConn()
+udpconn = UDPConn()
 ```
-[View the full documentation](networkInterfaceInfo.md)
 
+### class documentations
+- [InterfacesInfos](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/ifaceinfo.md#class-interfacesinfos)
+- [InterfacesRoutes](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/ifaceroutes.md#class-interfacesroutes)
+- [TCPConn](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/udpconn.md#class-tcpconn)
+- [UDPConn](https://github.com/atam84/ifaceinfo/blob/master/ifaceinfo/doc/udpconn.md#class-udpconn)
 
-## output example
-[Output example](output.md)
 
 
 ## for more informations about the keyword signification read this:

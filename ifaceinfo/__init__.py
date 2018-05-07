@@ -5,3 +5,4 @@ from ifaceinfotools import FileReader
 from ifaceinfotools import Conn
 from tcpconn import TCPConn
 from udpconn import UDPConn
+from ifaceversion import version
