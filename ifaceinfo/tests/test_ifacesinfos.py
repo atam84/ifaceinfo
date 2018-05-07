@@ -2,9 +2,8 @@
 
 
 import sys
+sys.path.append('../')
 from pprint import pprint
-
-sys.path.append('./modules')
 from ifaceinfo import InterfacesInfos
 
 

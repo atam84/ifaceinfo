@@ -24,6 +24,23 @@ class TCPConn(Conn):
         '''
         self.refresh()
 
+class TCP6Conn(Conn):
+    def __init__(self):
+        Conn.__init__(self, '/proc/net/tcp6', 'tcp6')
+
+    def refresh(self):
+        '''
+        this function refresh the informations collected when the class is loaded
+        if you want to work with fresh data use this function to reload the data updated
+        '''
+        self.__init__()
+    
+    def reload(self):
+        '''
+        same as self.refresh()
+        '''
+        self.refresh()
+
 #class TCPConn(IfaceInfoTools):
 #    '''
 #    this class provide a quick interface to read /proc/net/tcp and give the informations about the current connexion to host
