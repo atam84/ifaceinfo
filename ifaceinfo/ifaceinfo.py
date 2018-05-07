@@ -23,7 +23,7 @@ class InterfacesInfos(IfaceInfoTools):
         at this time the scan of /sys/class/net are performed in the initialisation of the class
         """
         IfaceInfoTools
-        self.version = '0.1.4'
+        self.version = '0.1.7'
         self.github_url = 'https://github.com/atam84/ifaceinfo'
         self.__timestamp = self.timestamp = int(time.time())
         self.__ifaces_info = self.__get_ifaces_info('/sys/class/net')
