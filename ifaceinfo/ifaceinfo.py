@@ -72,26 +72,36 @@ class InterfacesInfos(IfaceInfoTools):
             netInterfaces = os.listdir(path)
         except Exception as Err:
             raise Exception('Error: Cannot read the main directory - ', Err)
-        # let collect network interfaces """
+        # let collect network interfaces
+        # loop for every network interfaces found
         for iface in netInterfaces:
+            # create dict for the new interface
             netIface = {}
+            # if network interfaces found in /sys/class/net/ is directory then start the collection of data else do nothing
             if os.path.isdir(os.path.join(path, iface)):
-                # create the interface object and begin the data collection """
-                netIface['name'] = iface
+                # create the interface object and begin the data collection
+                netIface['name'] = iface        # the name of the interface (directory name found on /sys/class/net/)
                 netIface['ip'] = self.ip_address(iface)
                 netIface['mask'] = self.network_mask(iface)
                 netIface['timestamp'] = self.__get_timestamp()
+                # if the ip and mask are not empty then calculate the network adress else return emplty string
                 if netIface['ip'] != '' and netIface['mask'] != '':
                     netIface['network_address'] = self.network_address(netIface['ip'], netIface['mask'])
                 else:
                     netIface['network_address'] = ''
+                # create the path where we go on it /sys/class/net/<iface>/
                 netIfaceDir = os.path.join(path, iface)
-                # get the interface params """
+                # get the interface params
                 try:
+                    # list the contents of netIfaceDir /sys/class/net/<iface>/
                     netIfaceParams = os.listdir(netIfaceDir)
                 except IOError:
+                    # if there is and IOError we pass
+                    netIfaceParams = []
                     pass
+                
                 for param in netIfaceParams:
+                    # if ower param is a file we collect the data from the file
                     if os.path.isfile(os.path.join(netIfaceDir, param)):
                         # here we read every param file and we put the data collected on the  """
                         try:
@@ -112,8 +122,28 @@ class InterfacesInfos(IfaceInfoTools):
                             netIface[param] = self.__uevent_as_list(paramValue.rstrip())
                         else:
                             netIface[param] = self.__convert_value(paramValue.rstrip())
+                     # if ower param is a directory we collect the data under this directory
                     if os.path.isdir(os.path.join(netIfaceDir, param)):
-                        netIface[param] = self.__scan_object(os.path.join(netIfaceDir, param), param)
+                        # if an lower device detecte ( vdev (iface) connected to another vdev (bridge))
+                        if param.startswith('lower_'):
+                            # lower position detected many position can be found in the loop
+                            # get the device connected name
+                            _devname = param.replace('lower_', '')
+                            if 'lower' not in netIface:
+                                # if lower key doesnt exist in our newly initiated netIface (interface), we create it as dict
+                                netIface['lower'] = {}
+                            netIface['lower'][_devname] = self.__scan_object(os.path.join(netIfaceDir, param), param)
+                        # if an upper device detecte ( vdev (iface) connected to another vdev (bridge))
+                        elif param.startswith('upper_'):
+                            # upper position detected many position can be found in the loop
+                            _devname = param.replace('upper_', '')
+                            if 'upper' not in netIface:
+                                # if upper key doesnt exist in our newly initiated netIface (interface), we create it as dict
+                                netIface['upper'] = {}
+                            netIface['upper'][_devname] = self.__scan_object(os.path.join(netIfaceDir, param), param)
+                        # if not upper and not lower directory we do it simple :)
+                        else:
+                            netIface[param] = self.__scan_object(os.path.join(netIfaceDir, param), param)
                 objArray.append(netIface)
         return objArray
 

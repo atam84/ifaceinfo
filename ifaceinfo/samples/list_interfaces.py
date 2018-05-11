@@ -1,5 +1,14 @@
 #!/usr/bin/env python
 
+#
+# Author : Mohamed Amine TAMDY
+# Email  : amine.tamdy@gmail.com
+# Github : https://github.com/atam84/ifaceinfo
+#
+
+
+import sys
+sys.path.append('../')
 from ifaceinfo import InterfacesInfos
 from pprint import pprint
 
@@ -103,13 +112,24 @@ def get_network_interfaces():
         print('        {:20s} {}/{}'.format('packets (tx/rx) :', str(ifaces[interface]['statistics']['tx_packets']), str(ifaces[interface]['statistics']['rx_packets'])))
         print('        {:20s} {}/{}'.format('errors (tx/rx)  :', _tx_errors, _rx_errors))
         if ifaces[interface]['uevent']['devtype'] == 'bridge':
-            print('    {}'.format(cl.style.DIM + cl.style.UNDERLINE + 'bridge connected interfaces:' + cl.style.RESET_ALL))
-            for key in ifaces[interface]:
-                if key.startswith('lower_'):
-                    print('        {:20s} {:20s} {:s}'.format(ifaces[interface][key]['uevent']['interface'], ifaces[interface][key]['address'], ifaces[interface][key]['operstate']))
+            if 'lower' in ifaces[interface]:
+                print('    {}'.format(cl.style.DIM + cl.style.UNDERLINE + 'bridge connected interfaces:' + cl.style.RESET_ALL))
+                for key in ifaces[interface]['lower']:
+                    #if key.startswith('lower_'):
+                    print('        {:20s} {:20s} {:s}'.format(ifaces[interface]['lower'][key]['uevent']['interface'], ifaces[interface]['lower'][key]['address'], ifaces[interface]['lower'][key]['operstate']))
+        else:
+            if 'upper' in ifaces[interface]:
+                print('    {}'.format(cl.style.DIM + cl.style.UNDERLINE + 'device connected on bridge:' + cl.style.RESET_ALL))
+                for key in ifaces[interface]['upper']:
+                    #if key.startswith('upper_'):
+                    print('        {:20s} {:20s} {:s}'.format(ifaces[interface]['upper'][key]['uevent']['interface'], ifaces[interface]['upper'][key]['address'], ifaces[interface]['upper'][key]['operstate']))
         print('\n')
     print('---------------')
-    print('{}{} network interfaces that include {} bridge listed where {} up, {} down and {} with unknown status.{}'.format(cl.fg.WHITE, _report['n_iface'], _report['br_count'], _report['iface_oper_up'], _report['iface_oper_down'], _report['iface_oper_unknown'], cl.fg.RESET))
+    #print('{}{} network interfaces that include {} bridge listed where {} up, {} down and {} with unknown status.{}'.format(cl.fg.WHITE, _report['n_iface'], _report['br_count'], _report['iface_oper_up'], _report['iface_oper_down'], _report['iface_oper_unknown'], cl.fg.RESET))
+    print('{}{}'.format(cl.style.BOLD, cl.fg.WHITE))
+    print('{} network interfaces that include {} bridge listed'.format(_report['n_iface'],_report['br_count']))
+    print('{} up, {} down and {} with unknown status.'.format(_report['iface_oper_up'], _report['iface_oper_down'], _report['iface_oper_unknown']))
+    print('{}'.format(cl.style.RESET_ALL))
     print('---------------')
 
 
