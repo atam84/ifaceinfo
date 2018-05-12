@@ -11,8 +11,8 @@ from ifaceinfotools import IfaceInfoTools
 this class operate using the files bellow
     - /sys/class/net/*/
     - /proc/net/route
-    - /proc/net/tcp
-    - /proc/net/udp
+    - /proc/net/{tcp,tcp6}
+    - /proc/net/{udp,udp6}
 """
 
 class InterfacesInfos(IfaceInfoTools):
@@ -23,7 +23,6 @@ class InterfacesInfos(IfaceInfoTools):
         at this time the scan of /sys/class/net are performed in the initialisation of the class
         """
         IfaceInfoTools
-        self.version = '0.1.7'
         self.github_url = 'https://github.com/atam84/ifaceinfo'
         self.__timestamp = self.timestamp = int(time.time())
         self.__ifaces_info = self.__get_ifaces_info('/sys/class/net')
@@ -176,13 +175,16 @@ class InterfacesInfos(IfaceInfoTools):
                 else:
                     if sub_object == 'uevent':
                         scan_obj[sub_object] = self.__uevent_as_list('\n'.join(paramValue))
+                    elif sub_object == 'queues':
+                        scan_obj[sub_object] = self.__scan_object(os.path.join(path, sub_object), sub_object)
                     else:
                         scan_obj[sub_object] = []
                         for val in paramValue:
                             scan_obj[sub_object].append(self.__convert_value(val.rstrip()))
-            #if os.path.isdir(os.path.join(path, sub_object)):
-                #scan_obj[sub_object] = __scan_object(os.path.join(path, sub_object), sub_object)
-                #print 'Dir: ' + path + '/' + sub_object, sub_object
+            if os.path.isdir(os.path.join(path, sub_object)):
+                # fix the queues informations collection
+                if sub_object[:3] == 'tx-' or sub_object[:3] == 'rx-':
+                    scan_obj[sub_object] = self.__scan_object(os.path.join(path, sub_object), sub_object)
         return scan_obj
 
     def __convert_value(self, valuetoconvert):

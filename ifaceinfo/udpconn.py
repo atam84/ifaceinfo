@@ -40,3 +40,4 @@ class UDP6Conn(Conn):
         same as self.refresh()
         '''
         self.refresh()
+

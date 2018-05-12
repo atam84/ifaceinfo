@@ -33,6 +33,24 @@ class IfaceInfoTools:
     def __init__(self):
         self.IfaceInfoTools_version = '0.0.1'
 
+#def ipv6_address(ifacename):
+#    #print(socket.inet_ntop(socket.AF_INET6, socket.inet_pton(socket.AF_INET6, '10::' )))
+#    addr = socket.inet_ntop(fcntl.ioctl(socket.socket(socket.AF_INET6, socket.SOCK_DGRAM), 0x8915, struct.pack('256s', ifacename.encode()))[20:24])
+#    return addr
+#
+#def ipv6_struct(ifacename):
+#    from pprint import pprint
+#    _fdsock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
+#    _structpack = struct.pack('256s', ifacename.encode())
+#    print('Socket : ')
+#    pprint(_fdsock)
+#    print('Struct : ')
+#    pprint(_structpack)
+#    print('ioctl :')
+#    pprint(fcntl.ioctl(_fdsock, 0x8912, _structpack))
+#    addr = socket.inet_ntop(socket.AF_INET6, fcntl.ioctl(_fdsock, 0x8912, _structpack)[20:25])
+#    return addr
+
     def ip_address(self, ifacename):
         '''
         private methode
@@ -102,17 +120,6 @@ class Conn(IfaceInfoTools, FileReader):
     
     https://www.kernel.org/doc/Documentation/networking/proc_net_tcp.txt
     
-    /proc/net/tcp   <<-- Example -->>
-    sl  local_address rem_address   st   tx_queue         rx_queue     tr      tm->when retrnsmt   uid  timeout inode                                                     
-    0: 0100007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 32059 1 0000000000000000 100 0 0 10 0                     
-    1: 00000000:0016 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 44971 1 0000000000000000 100 0 0 10 0                     
-    2: 0100007F:0277 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 24125 1 0000000000000000 100 0 0 10 0                     
-    3: 0100007F:6989 00000000:0000 0A 00000000:00000000 00:00000000 00000000   122        0 26080 1 0000000000000000 100 0 0 10 0                     
-    4: 00000000:14EB 00000000:0000 0A 00000000:00000000 00:00000000 00000000   102        0 25337 1 0000000000000000 100 0 0 10 0                     
-    5: 2401A8C0:AC56 2401A8C0:0016 01 00000000:00000000 02:0007DDFA 00000000  1000        0 59815 3 0000000000000000 20 4 30 10 -1                    
-    6: 2401A8C0:0016 2401A8C0:AC56 01 00000000:00000000 02:0007DDFA 00000000     0        0 61538 4 0000000000000000 20 4 31 10 17                    
-    7: 2401A8C0:E71E CEC93AD8:01BB 01 00000000:00000000 00:00000000 00000000  1000        0 69532 1 0000000000000000 39 4 30 10 -1                    
-    8: 2401A8C0:E360 8A13D9AC:01BB 01 00000000:00000000 00:00000000 00000000  1000        0 72008 1 0000000000000000 158 4 30 10 -1                   
     '''
     def __init__(self, procfilename, protocole):
         '''
