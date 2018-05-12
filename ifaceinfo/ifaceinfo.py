@@ -5,7 +5,7 @@ import fcntl
 import struct
 import time
 from pprint import pprint
-from ifaceinfotools import IfaceInfoTools
+from .ifaceinfotools import IfaceInfoTools
 
 """
 this class operate using the files bellow
