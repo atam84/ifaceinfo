@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-from ifaceinfotools import IfaceInfoTools
+from .ifaceinfotools import IfaceInfoTools
 
 class InterfacesRoutes(IfaceInfoTools):
     def __init__(self):

@@ -5,7 +5,7 @@ import sys
 #import struct
 import time
 from pprint import pprint
-from ifaceinfotools import Conn
+from .ifaceinfotools import Conn
 
 class TCPConn(Conn):
     def __init__(self):
