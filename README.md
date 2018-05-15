@@ -1,6 +1,8 @@
 # ifaceinfo
 python package that provide networks informations in json/dict format
 
+[![Documentation Status](https://readthedocs.io/projects/ifaceinfo/badge/?version=latest)](http://ifaceinfo.readthedocs.io/?badge=latest)
+
 ##### Informations are collected:
 - network device name
 - mac addr, ip addr, mask, network addr
